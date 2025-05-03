@@ -12,9 +12,16 @@
         },
         {
             "type": "java",
-            "name": "database-demo",
+            "name": "jdbc-demo",
             "request": "launch",
-            "mainClass": "com.in28minutes.database.database_demo.DatabaseDemoApplication",
+            "mainClass": "com.in28minutes.database.database_demo.JdbcDemoApplication",
+            "projectName": "database-demo"
+        },
+        {
+            "type": "java",
+            "name": "jdbc-demo",
+            "request": "launch",
+            "mainClass": "com.in28minutes.database.database_demo.JpaDemoApplication",
             "projectName": "database-demo"
         }
     ]

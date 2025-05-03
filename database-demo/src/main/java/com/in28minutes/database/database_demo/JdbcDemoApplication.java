@@ -6,7 +6,6 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.in28minutes.database.database_demo.jdbc.Person;
 import com.in28minutes.database.database_demo.jdbc.PersonJdbcDao;
@@ -14,14 +13,14 @@ import com.in28minutes.database.database_demo.jdbc.PersonJdbcDao;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@SpringBootApplication
-public class DatabaseDemoApplication implements CommandLineRunner {
+// @SpringBootApplication
+public class JdbcDemoApplication implements CommandLineRunner {
 
 	@Autowired
 	private PersonJdbcDao personJdbcDao;
 
 	public static void main(String[] args) {
-		SpringApplication.run(DatabaseDemoApplication.class, args);
+		SpringApplication.run(JdbcDemoApplication.class, args);
 	}
 
 	@SuppressWarnings("deprecation")
