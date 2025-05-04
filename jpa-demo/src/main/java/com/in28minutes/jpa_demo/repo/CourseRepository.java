@@ -56,7 +56,7 @@ public class CourseRepository {
         em.remove(course);
     }
 
-    public void playWithEntityManager() {
+    public void playWithEntityManager() throws InterruptedException {
         log.info("playWithEntityManager - start");
 
         Course course = new Course("JavaScript");
