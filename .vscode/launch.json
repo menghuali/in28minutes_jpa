@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "JpaDemoApplication",
+            "request": "launch",
+            "mainClass": "com.in28minutes.jpa_demo.JpaDemoApplication",
+            "projectName": "jpa-demo"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

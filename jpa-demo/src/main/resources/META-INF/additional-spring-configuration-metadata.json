@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "auto.exit",
+      "type": "java.lang.String",
+      "description": "Whether to exit the application after the task is completed."
+    }
+  ]
+}
