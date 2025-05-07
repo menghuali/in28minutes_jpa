@@ -1,19 +1,27 @@
 package com.in28minutes.jpa_demo.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @NamedQueries({
         @NamedQuery(name = "all_courses", query = "SELECT c FROM Course c"),
@@ -23,7 +31,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Course {
 
-    @Getter
+    @Setter(AccessLevel.PROTECTED)
     @GeneratedValue
     @Id
     private Long id;
@@ -37,8 +45,33 @@ public class Course {
     @UpdateTimestamp
     private LocalDateTime lastUpdatedTime;
 
+    @OneToMany(mappedBy = "course")
+    @Setter(AccessLevel.PROTECTED)
+    private List<Review> reviews = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "courses")
+    @Setter(AccessLevel.PROTECTED)
+    @ToString.Exclude
+    private List<Student> students = new ArrayList<>();
+
     public Course(String name) {
         this.name = name;
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
+    }
+
+    public void removeReview(Review review) {
+        reviews.remove(review);
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public void removeStudent(Student student) {
+        students.remove(student);
     }
 
 }

@@ -1,9 +1,12 @@
 package com.in28minutes.jpa_demo.repo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.in28minutes.jpa_demo.entity.Course;
+import com.in28minutes.jpa_demo.entity.Review;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -80,6 +83,28 @@ public class CourseRepository {
         em.flush();
 
         log.info("playWithEntityManager - end");
+    }
+
+    public void addReviews() {
+        Course course = em.find(Course.class, 10002L);
+        log.info("Course 10001 reviews -> {}", course.getReviews());
+        Review review1 = new Review("Great course! Clear explanations, hands-on projects, very beginner-friendly.", "5",
+                course);
+        Review review2 = new Review("Good overview, but lacks real-world depth and advanced examples.", "3", course);
+        course.addReview(review1);
+        course.addReview(review2);
+        em.persist(review1);
+        em.persist(review2);
+    }
+
+    public void addReview(Long courseId, List<Review> reviews) {
+        Course course = em.find(Course.class, courseId);
+        log.info("Course {} reviews -> {}", courseId, course.getReviews());
+        for (Review review : reviews) {
+            review.setCourse(course);
+            course.addReview(review);
+            em.persist(review);
+        }
     }
 
 }

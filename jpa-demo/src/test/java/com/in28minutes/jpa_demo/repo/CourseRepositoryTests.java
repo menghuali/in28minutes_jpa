@@ -12,7 +12,10 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import com.in28minutes.jpa_demo.JpaDemoApplication;
 import com.in28minutes.jpa_demo.entity.Course;
+import com.in28minutes.jpa_demo.entity.Review;
 
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -21,6 +24,9 @@ public class CourseRepositoryTests {
 
     @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private EntityManager em;
 
     @Test
     void findById() {
@@ -48,5 +54,24 @@ public class CourseRepositoryTests {
     @Test
     public void testNullable() {
         assertThrows(DataIntegrityViolationException.class, () -> courseRepository.save(new Course()));
+    }
+
+    /**
+     * OneToMany by default is lazy fetch
+     */
+    @Transactional
+    @Test
+    public void getCourseReviews() {
+        Course course = courseRepository.findById(10001L);
+        log.info("Course views -> {}", course.getReviews());
+    }
+
+    /**
+     * ManyToOne by default is earger fetch
+     */
+    @Test
+    public void getReview() {
+        Review review = em.find(Review.class, 50001L);
+        log.info("Review -> {}", review);
     }
 }
