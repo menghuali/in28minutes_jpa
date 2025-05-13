@@ -1,12 +1,12 @@
 package com.in28minutes.jpa_demo.repo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.in28minutes.jpa_demo.entity.Course;
 
@@ -17,10 +17,9 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
-@Transactional
+@Transactional(isolation = Isolation.READ_COMMITTED)
 @Slf4j
 @SpringBootTest
 public class CriteriaQueryTests {

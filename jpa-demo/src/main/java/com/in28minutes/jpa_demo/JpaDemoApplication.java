@@ -46,23 +46,23 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		log.info("Course 10001 -> {}", courseRepo.findById(10001L));
-		log.info("Inserting new course -> {}", courseRepo.save(new Course("Python")));
-		courseRepo.playWithEntityManager();
-		studentRepo.createStudentWithPassport();
-		studentRepo.updateStudent();
-		studentRepo.mulitpleOperations();
-		courseRepo.addReview(10002L, List
-				.of(
-						new Review("Great course! Clear explanations, hands-on projects, very beginner-friendly.", "5"),
-						new Review("Good overview, but lacks real-world depth and advanced examples.", "3")));
-		studentRepo.insertStudentAndCourse(new Student("Tony Stark"), new Course("Microservices"));
+		// log.info("Course 10001 -> {}", courseRepo.findById(10001L));
+		// log.info("Inserting new course -> {}", courseRepo.save(new Course("Python")));
+		// courseRepo.playWithEntityManager();
+		// studentRepo.createStudentWithPassport();
+		// studentRepo.updateStudent();
+		// studentRepo.mulitpleOperations();
+		// courseRepo.addReview(10002L, List
+		// 		.of(
+		// 				new Review("Great course! Clear explanations, hands-on projects, very beginner-friendly.", "5"),
+		// 				new Review("Good overview, but lacks real-world depth and advanced examples.", "3")));
+		// studentRepo.insertStudentAndCourse(new Student("Tony Stark"), new Course("Microservices"));
 
-		employeeRepo.insert(new FullTimeEmployee("Peter Parker", BigDecimal.valueOf(10000)));
-		employeeRepo.insert(new PartTimeEmployee("Bruce Wayne", BigDecimal.valueOf(100)));
-		log.info("All employees -> {}", employeeRepo.findAll());
-		log.info("Full time employees -> {}", employeeRepo.findAllFullTime());
-		log.info("Part time employees -> {}", employeeRepo.findAllPartTime());
+		// employeeRepo.insert(new FullTimeEmployee("Peter Parker", BigDecimal.valueOf(10000)));
+		// employeeRepo.insert(new PartTimeEmployee("Bruce Wayne", BigDecimal.valueOf(100)));
+		// log.info("All employees -> {}", employeeRepo.findAll());
+		// log.info("Full time employees -> {}", employeeRepo.findAllFullTime());
+		// log.info("Part time employees -> {}", employeeRepo.findAllPartTime());
 		// Clean exit
 		if (autoExit) {
 			log.info("Exiting application");
