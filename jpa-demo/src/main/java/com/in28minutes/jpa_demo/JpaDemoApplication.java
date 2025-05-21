@@ -1,19 +1,11 @@
 package com.in28minutes.jpa_demo;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.in28minutes.jpa_demo.entity.Course;
-import com.in28minutes.jpa_demo.entity.FullTimeEmployee;
-import com.in28minutes.jpa_demo.entity.PartTimeEmployee;
-import com.in28minutes.jpa_demo.entity.Review;
-import com.in28minutes.jpa_demo.entity.Student;
 import com.in28minutes.jpa_demo.repo.CourseRepository;
 import com.in28minutes.jpa_demo.repo.EmployeeRepository;
 import com.in28minutes.jpa_demo.repo.StudentRepository;

@@ -6,7 +6,7 @@
     "configurations": [
         {
             "type": "java",
-            "name": "JpaDemoApplication",
+            "name": "jpa-demo",
             "request": "launch",
             "mainClass": "com.in28minutes.jpa_demo.JpaDemoApplication",
             "projectName": "jpa-demo"
