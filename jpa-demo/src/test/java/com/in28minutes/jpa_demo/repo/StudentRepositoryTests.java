@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.in28minutes.jpa_demo.entity.Address;
 import com.in28minutes.jpa_demo.entity.Passport;
 import com.in28minutes.jpa_demo.entity.Student;
 
@@ -22,6 +23,8 @@ public class StudentRepositoryTests {
     @Test
     public void retrieveStudentAndPassport() {
         Student student = em.find(Student.class, 20001L);
+        student.setAddress(new Address("No 101", "Some Street", "Toronto"));
+        em.flush();
         // This method need transaction because passport is lazy fetch.
         Passport passport = student.getPassport();
         log.info("retrieveStudentAndPassport - Student 10001L -> {}", student);

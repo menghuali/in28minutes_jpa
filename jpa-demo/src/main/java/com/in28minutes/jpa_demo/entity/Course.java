@@ -91,7 +91,7 @@ public class Course {
         students.remove(student);
     }
 
-    @PreRemove
+    @PreRemove // Entity lifecycle callback
     private void preRemove() {
         log.info(name + " is being deleted");
         setDeleted(true);

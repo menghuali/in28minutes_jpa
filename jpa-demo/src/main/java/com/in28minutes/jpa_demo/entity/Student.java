@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -38,6 +39,9 @@ public class Student {
     @ManyToMany
     @Setter(AccessLevel.PROTECTED)
     private List<Course> courses = new ArrayList<>();
+
+    @Embedded // Embedded object
+    private Address address;
 
     public Student(String name) {
         this.name = name;
