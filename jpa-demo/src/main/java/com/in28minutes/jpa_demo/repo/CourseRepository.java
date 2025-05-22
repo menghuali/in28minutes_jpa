@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.in28minutes.jpa_demo.entity.Course;
+import com.in28minutes.jpa_demo.entity.Rating;
 import com.in28minutes.jpa_demo.entity.Review;
 
 import jakarta.persistence.EntityManager;
@@ -88,9 +89,11 @@ public class CourseRepository {
     public void addReviews() {
         Course course = em.find(Course.class, 10002L);
         log.info("Course 10001 reviews -> {}", course.getReviews());
-        Review review1 = new Review("Great course! Clear explanations, hands-on projects, very beginner-friendly.", "5",
+        Review review1 = new Review("Great course! Clear explanations, hands-on projects, very beginner-friendly.",
+                Rating.FIVE,
                 course);
-        Review review2 = new Review("Good overview, but lacks real-world depth and advanced examples.", "3", course);
+        Review review2 = new Review("Good overview, but lacks real-world depth and advanced examples.", Rating.THREE,
+                course);
         course.addReview(review1);
         course.addReview(review2);
         em.persist(review1);

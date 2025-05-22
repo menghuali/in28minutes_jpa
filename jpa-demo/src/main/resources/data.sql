@@ -15,10 +15,10 @@ insert into student (id, name, passport_id) values
     (20003,'Clark Kent', 40003);
 
 insert into review (id, rating, description, course_id) values
-    (50001, '5', 'Clear, practical, and great for Java beginners.', 10001),
-    (50002, '5', 'Good Spring overview with helpful hands-on projects.', 10002),
-    (50003, '5', 'Easy to follow, perfect for Hibernate basics.', 10003),
-    (50004, '5', 'Excellent Java course—clear, practical, and great for beginners.', 10001);
+    (50001, 'FIVE', 'Clear, practical, and great for Java beginners.', 10001),
+    (50002, 'FIVE', 'Good Spring overview with helpful hands-on projects.', 10002),
+    (50003, 'FIVE', 'Easy to follow, perfect for Hibernate basics.', 10003),
+    (50004, 'FIVE', 'Excellent Java course—clear, practical, and great for beginners.', 10001);
 
 insert into student_course(student_id, course_id) values
     (20001,10001),

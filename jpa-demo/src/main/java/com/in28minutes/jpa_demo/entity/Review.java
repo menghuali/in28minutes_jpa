@@ -1,6 +1,8 @@
 package com.in28minutes.jpa_demo.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -22,18 +24,19 @@ public class Review {
 
     private String description;
 
-    private String rating;
+    @Enumerated(EnumType.STRING)
+    private Rating rating;
 
     @ToString.Exclude
     @ManyToOne
     private Course course;
 
-    public Review(String description, String rating) {
+    public Review(String description, Rating rating) {
         this.description = description;
         this.rating = rating;
     }
 
-    public Review(String description, String rating, Course course) {
+    public Review(String description, Rating rating, Course course) {
         this.description = description;
         this.rating = rating;
         this.course = course;
