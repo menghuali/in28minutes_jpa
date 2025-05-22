@@ -1,8 +1,8 @@
-insert into course (id, name, created_time, last_updated_time) values 
-    (10001, 'Java', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP), 
-    (10002, 'Spring', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP), 
-    (10003, 'Hibernate', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (10004, 'Azure', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+insert into course (id, name, created_time, last_updated_time, is_deleted) values 
+    (10001, 'Java', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, false), 
+    (10002, 'Spring', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, false), 
+    (10003, 'Hibernate', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, false),
+    (10004, 'Azure', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, false);
 
 insert into passport (id, number) values
     (40001, 'K34892107'),

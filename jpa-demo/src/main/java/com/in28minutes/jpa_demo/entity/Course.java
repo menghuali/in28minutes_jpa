@@ -7,6 +7,8 @@ import java.util.List;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,14 +22,17 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PreRemove;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
-@Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "course")
+@Slf4j
+@Cacheable // Enable second level cache
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "course") // Cache strategy
 @NamedQueries({
         @NamedQuery(name = "all_courses", query = "SELECT c FROM Course c"),
         @NamedQuery(name = "find_courses_by_name", query = "SELECT c from Course c WHERE name = ?1"),
@@ -35,6 +40,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @Data
 @Entity
+@SQLDelete(sql = "UPDATE course SET is_deleted = true WHERE id = ?") // Soft delete: update is_deleted to true
+@SQLRestriction("is_deleted = false") // Soft delete: only select where is_deleted = false
 public class Course {
 
     @Setter(AccessLevel.PROTECTED)
@@ -61,6 +68,9 @@ public class Course {
     @ToString.Exclude
     private List<Student> students = new ArrayList<>();
 
+    // Soft delete
+    private boolean isDeleted;
+
     public Course(String name) {
         this.name = name;
     }
@@ -79,6 +89,12 @@ public class Course {
 
     public void removeStudent(Student student) {
         students.remove(student);
+    }
+
+    @PreRemove
+    private void preRemove() {
+        log.info(name + " is being deleted");
+        setDeleted(true);
     }
 
 }

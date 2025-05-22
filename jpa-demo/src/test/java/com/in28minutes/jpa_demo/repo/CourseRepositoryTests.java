@@ -1,8 +1,11 @@
 package com.in28minutes.jpa_demo.repo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +50,9 @@ public class CourseRepositoryTests {
     @DirtiesContext
     @Test
     void deleteById() {
-        courseRepository.deleteById(10002L);
-        assertEquals(null, courseRepository.findById(10002L));
+        courseRepository.deleteById(10004L);
+        Course course = courseRepository.findById(10004L);
+        assertNull(course);
     }
 
     @Test
