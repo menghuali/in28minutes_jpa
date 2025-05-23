@@ -19,6 +19,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
@@ -30,6 +32,9 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
+@NamedEntityGraph(name = "Course.reviews", attributeNodes = {
+        @NamedAttributeNode("reviews")
+})
 @Slf4j
 @Cacheable // Enable second level cache
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "course") // Cache strategy
